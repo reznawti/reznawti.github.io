@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css " rel="stylesheet " integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC " crossorigin="anonymous ">
+    <title>Page Title</title>
+</head>
+<body>
+    <div class='position-absolute top-50 start-50 translate-middle'>
+        <button id='button' class='btn btn-primary btn-lg' onclick='mulai()'> Click Here! </button>
+        <div id='happy birthday' style='display: none;'>
+            <h2 class='text-center'>happy birthday<br>&#10084;&#65039;</h2>
+        </div>
+    </div>
+    <span id='hati' class='fixed-bottom text-center my-3' onclick='hati()'></span>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js"></script>
+    <script type="text/javascript ">
+        const author = 'Resna';
+        document.getElementById('hati').innerHTML = `Made with &#10084;&#65039; by ${author}`;
+        const swals = Swal.mixin({
+                cancelButtonColor: '#d33',
+                confirmButtonColor: '#3085d6',
+            });
+            async function mulai(){
+                await swals.fire('Halo Jess no limit ku &#129326;', 'Aku ada pertanyaan', 'question');
+                await swals.fire('Jawab yang jujur ya!');
+                await swals.fire('Awas aja kalo bohong!!','','error');
+                var { value: hadiah } = await swals.fire({
+                    title: 'Masukkan kritik untuk hadiah nya',
+                    input: 'text',
+                    showCancelButton: true,
+                });
+                if(hadiah){
+                    var { isConfirmed: suka } = await swals.fire({
+                        title: `Suka ga sama hadiah nya ${author}`,
+                        confirmButtonText: 'Suka',
+                        cancelButtonText: 'Gak',
+                        showCancelButton: true,
+                    });
+                    if(suka){
+                        await swals.fire('bagus dehh, harus dipakai ya!');
+                        var { value: persen } = await swals.fire({
+                            title: 'Seberapa suka emangnya?',
+                            icon: 'question',
+                            input: 'range',
+                            inputLabel: 'Antara 1-100 ya',
+                            inputAttributes: {
+                                min: 1,
+                                max: 100,
+                            },
+                            inputValue: 50
+                        });
+                        if(persen){
+                            await swals.fire(`Makasih ya udah mau nerima hadiah ${author}`);
+                            var { isConfirmed: mau } = await swals.fire({
+                                title: 'Sekarang kamu mau ga baca story nya?',
+                                confirmButtonText: 'Mau',
+                                cancelButtonText: 'Gak',
+                                showCancelButton: true,
+                            });
+                            if(mau){
+                                await swals.fire('Huhu sebenarnya aku kecewa karena size nya yang kecil :((');
+                                await swals.fire('Tab nya ga muat kan? tapi kalo ke undangan itu pasti kepake');
+                                await swals.fire('misalkan ga bawa tab');
+                                await swals.fire('masih bisa bawa dompet,parfum,earphone,hp')
+                                await swals.fire('oke, terakhir nih');
+                                await swals.fire('Coba klik ikon hati di paling bawah dong');
+                            } else {
+                                //gak mau
+                            }
+                        }
+                    } else {
+                        //gak kritik
+                    }
+                } else {
+                    //gak isi suka
+                }
+            }
+        function hati(){
+            document.getElementById('button').style = 'display: none';
+            document.getElementById('happy birthday').style = '';
+            startConfetti();
+        }
+        </script>
+        <script type="text/javascript" src="https://www.cssscript.com/demo/confetti-falling-animation/confetti.js"></script>
+         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+    </body>
+</html>
